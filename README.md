@@ -17,36 +17,44 @@ and it will be **presented as is**:
 
 # the challenge
 
-> [Cellulant](https://www.cellulant.com/) has implemented a custom, card number verification system to ensure detection and blocking of fake cards. A scratch card consists of **4** sets of **5** digits (20 digits in total) e.g. [**10006-12342-00081-99993**] which are printed separated by a space or a dash. 
-
+> Cellulant has implemented a custom, card number verification system to ensure detection and blocking of fake cards. A scratch card consists of **4** sets of **5** digits (20 digits in total) e.g. [**10006-12342-00081-99993**] which are printed separated by a space or a dash. 
+>
 > Each set of 5 digits consists of two parts, the first 4 digits (the number) and a 5th digit (the checksum) The formula dictates that each of the sets must be validated as follows: The first 4 digits, e.g 1234, as decimal numbers be converted into an octal number (base 8) i.e. 23228. This octal number is then processed to generate the checksum, as follows:
-
-
+>
+>
 > 1. Add all digits to each other to get a new number **“X”**
 > 2. If **“X”** is more than 1 digit, repeat step **(1)** until you have a single digit. **“Y”**
 > 3. Append **“Y”** to the end of the original decimal number e.g. 1234 **2**
-
+>
 > #### For Example:
 > **Given the set “10006”**
-
-> Convert 1000 to octal =>17508>
-> 1+7+5+0=158
-> 1+5=68
+>
+> Convert 1000 to octal =>1750
+>
+> 1+7+5+0=15
+>
+> 1+5=6
+>
 > Valid number is 10006 so;
+>
 > return **(TRUE)**
-
+>
+>
 > **Given the set “99998”**
-
-> Convert 9999 to octal => 234178
+>
+> Convert 9999 to octal => 23417
+>
 > 2+3+4+1+7=218
-> 2+1=38
+>
+> 2+1=3
+>
 > Valid number is 99993 so;
+>
 > return **(FALSE)**
-
+>
 > Create a **Java**, **Java-Script** or **PHP** script with the **function** that will receive a **string** value **(scratch card number)** and return boolean TRUE or FALSE, on whether the card number is valid, as shown below
-
+>
 > You should use as **many other functions** as you deem necessary within your code.
-
 
 # the solution
 
