@@ -13,6 +13,15 @@
   "returns a list of octal numbers"
   (to-digits number 8))
 
+(defn mod-add-two-octal [x y]
+  "add two octal numbers using modulo arithmetic
+
+   I would have to submit both the quotient and the modulus"
+  (let [sum (+ x y)
+        q (quot sum 8)
+        m (mod sum 8)]
+    {:q q :m m}))
+
 (defn add-two-octal [x y]
   "add two octal numbers"
   (let [a (Integer/parseInt (str x) 8)
