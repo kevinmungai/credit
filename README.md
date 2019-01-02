@@ -56,7 +56,59 @@ and it will be **presented as is**:
 >
 > You should use as **many other functions** as you deem necessary within your code.
 
-# the solution
+# really neat solution
+
+This solution was contributed by [Filipe Ramalho](https://dev.to/filiperamalho)
+
+and can be found at [https://dev.to/kevinmungai/custom-card-number-verification-system-challenge-13o0](https://dev.to/kevinmungai/custom-card-number-verification-system-challenge-13o0)
+
+```clojure
+(defn is-valid?
+  [number]
+  (let [first-four (quot number 10)
+        check-sum (rem number 10)]
+    (-> first-four
+        (mod 7)
+        (- check-sum)
+        (mod 7)
+        (= 0))))
+
+
+user> (c/is-valid-modified? 10006)
+true
+user> (c/is-valid-modified? 99993)
+true
+user> (c/is-valid-modified? 99998)
+false
+user> (c/is-valid-modified? 12342)
+true
+user> (c/is-valid-modified? 11697)
+true
+
+
+```
+
+
+```clojure
+(defn validate-scratch-card [card-number]
+  (let [f (comp is-valid? #(Integer/parseInt %))]
+    (->> (string/split card-number #"(-|\s)")
+         (map f)
+         (every? true?))))
+
+user> (c/validate-scratch-card "10006 12342 00081 99998")
+false
+user> (c/validate-scratch-card "10006 12342 00081 99993")
+true
+
+```
+
+It is an elegant solution.
+
+
+
+
+# old solution
 
 Instead of using any of the proposed languages above, I shall use **Clojure**.
 
